@@ -15,6 +15,17 @@ function generateToken(params = {}) {
 }
 
 router.post('/register', async(req, res) => {
+    /**
+     * User register from mobile
+     * @params none
+     * 
+     * @body {
+     *  email: string,
+     *  name: string,
+     *  password: string
+     * }
+     */
+
     const { email } = req.body;
 
     try {
