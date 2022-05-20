@@ -49,12 +49,14 @@ router.patch('/:userId', async (req, res) => {
      */
     try {
         const _id = req.params.userId;
-        
-        const user_updated = await User.findOneAndUpdate(
+
+        await User.findOneAndUpdate(
             { _id },
             { ...req.body, updated: new Date() },
             { runValidators: true }
-        );       
+        );
+
+        const user_updated = await User.findOne({ _id });
      
         res.send({ user_updated });
     } catch (err) {
