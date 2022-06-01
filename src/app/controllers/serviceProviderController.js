@@ -10,7 +10,11 @@ const Address = require('../models/Address');
 router.use(authMiddlware);
 
 router.get('/', async (req, res) => {
-    const serviceProviders = await User.find({ serviceProvider: true });
+    const serviceProviders = 
+        await User
+            .find({ serviceProvider: true })
+            .select(['-services', '-comments']);
+
     res.send({ serviceProviders });
 });
 
@@ -31,14 +35,6 @@ router.get('/:serviceProviderId', async (req, res) => {
         res.send({ serviceProvider });
     } catch (err) {
         return res.status(400).send({error: 'Request failed!', err})
-    }
-});
-
-router.patch('/:serviceProviderId', async (req, res) => {
-    try {
-
-    } catch (err) {
-        return res.status(400).send({ error: 'Request failed!', err })
     }
 });
 

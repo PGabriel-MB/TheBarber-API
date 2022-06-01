@@ -32,14 +32,6 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    services:[{
-        type: ObjectId,
-        ref: 'service'
-    }],
-    comments: [{
-        type: ObjectId,
-        ref: 'comment'
-    }],
     password: {
         type: String,
         required: true,

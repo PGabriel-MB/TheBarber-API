@@ -17,7 +17,7 @@ router.get('/user/:userId', async (req, res) => {
     const { userId } = req.params;
 
     try {
-        const addresses = await Address.find({ serviceProvider: userId });
+        const addresses = await Address.find({ user: userId });
 
         return res.send(addresses);
     } catch (err) {

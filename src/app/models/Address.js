@@ -30,7 +30,7 @@ const AddressSchema = new mongoose.Schema({
         type: String,
         enum: ['RESIDENTIAL', 'BUSINESS', 'BOTH']
     },
-    serviceProvider: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     }

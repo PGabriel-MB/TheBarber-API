@@ -18,13 +18,13 @@ router.post('/', async(req, res) => {
     }
 });
 
-router.get('/:userId', async (req, res) => {
+router.get('/:serviceProviderId', async (req, res) => {
     /**
      *  Make the get of all services of the serviceProvider
      */
-    const serviceProvider = req.params.userId;
+    const serviceProvider = req.params.serviceProviderId;
     const services = await Service.find({ serviceProvider });
-    res.send({ services });
+    return res.send(services);
 });
 
 module.exports = app => app.use('/services', router);

@@ -9,37 +9,12 @@ const Address = require('../models/Address');
 
 router.use(authMiddlware);
 
-router.get('/', async (req, res) => {
-    const users = await User.find();
-    res.send({ users });
-});
-
 router.get('/:id', async (req, res) => {
     const _id = req.params.id;
-    const user = await User.findOne({ _id });
-    res.send({ user });
-});
+    const user = 
+        await User.findOne({ _id })
+            .select(['-services', '-comments', '-stars']);
 
-router.get('/address/:userId', async (req, res) => {
-    /**
-     * Here comes the user id to return all of de Service that he can offer
-     */
-    const _id = req.params.userId;
-    const user = await User.findOne({ _id });
-    const address = await Address.find({ _id: user.address });
-    user.address = address;
-    res.send({ user });
-});
-
-router.get('/services/:userId', async (req, res) => {
-    /**
-     * Here comes the user id to return all of de Service that he can offer
-     */
-    const _id = req.params.userId;
-    const user = await User.findOne({ _id });
-    const services = await Service.find({ serviceProvider: _id });
-
-    user.services = services
     res.send({ user });
 });
 
