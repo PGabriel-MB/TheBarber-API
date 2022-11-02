@@ -46,6 +46,14 @@ router.post('/register', async(req, res) => {
 });
 
 router.post('/authenticate', async (req, res) => {
+    /**
+     * Login route
+     * @params none
+     * @body {
+     *  email: string,
+     *  password: string
+     * }
+     */
     const { email, password } = req.body;
 
     const user = await User.findOne({ email }).select('+password');
@@ -65,6 +73,13 @@ router.post('/authenticate', async (req, res) => {
 })
 
 router.post('/validate-token', async (req, res) => {
+    /**
+     * Verification route
+     * @params
+     * @body {
+     *  token: string
+     * }
+     */
     const { token } = req.body;
 
     await jwt.verify(token, authConfig.secret, (err, decoded) => {
